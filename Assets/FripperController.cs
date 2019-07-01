@@ -28,22 +28,21 @@ public class FripperController : MonoBehaviour {
 			foreach (Touch touch in Input.touches) {
 
 				// タッチされた位置情報を取得
-				Vector2 newVec = new Vector2 (touch.position.x, touch.position.y);
-
+				Vector2 touchPos = new Vector2 (touch.position.x, touch.position.y);
 				// 画面左をタッチした時左フリッパーを動かす
-				if (touch.phase == TouchPhase.Began && newVec.x <= 375 && tag == "LeftFripperTag") {
+				if (touch.phase == TouchPhase.Began && touchPos.x <= Screen.width/2 && tag == "LeftFripperTag") {
 					SetAngle (this.flickAngle);
 				}
 				// 画面右をタッチした時右フリッパーを動かす
-				else if (touch.phase == TouchPhase.Began && newVec.x >= 375 && tag == "RightFripperTag") {
+				else if (touch.phase == TouchPhase.Began && touchPos.x >= Screen.width/2 && tag == "RightFripperTag") {
 					SetAngle (this.flickAngle);
 				}
 				// 画面左タッチが離された時フリッパーを元に戻す
-				else if (touch.phase == TouchPhase.Ended && newVec.x <= 375 && tag == "LeftFripperTag") {
+				else if (touch.phase == TouchPhase.Ended && touchPos.x <= Screen.width/2 && tag == "LeftFripperTag") {
 					SetAngle (this.defaultAngle);
 				}
 				// 画面右タッチが離された時フリッパーを元に戻す
-				else if (touch.phase == TouchPhase.Ended && newVec.x >= 375 && tag == "RightFripperTag") {
+				else if (touch.phase == TouchPhase.Ended && touchPos.x >= Screen.width/2 && tag == "RightFripperTag") {
 					SetAngle (this.defaultAngle);
 				}
 			}		
